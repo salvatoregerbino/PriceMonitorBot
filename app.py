@@ -16,6 +16,11 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 # --- Configurazione del Bot e del Server ---
 BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
 
+if BOT_TOKEN and BOT_TOKEN.startswith('"') and BOT_TOKEN.endswith('"'):
+    BOT_TOKEN = BOT_TOKEN[1:-1]
+
+print(f"Token letto: {BOT_TOKEN}")
+
 # Crea l'applicazione Flask e il bot
 application = ApplicationBuilder().token(BOT_TOKEN).build()
 
